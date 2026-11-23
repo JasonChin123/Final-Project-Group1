@@ -23,3 +23,6 @@ Because this dataset is large (~1.7 GB), raw files are typically downloaded loca
 - **PhysioNet Python Package:** Run the command `physionet download ptb-xl --version 1.0.1` in your environment.
 - **Terminal Command:** Use `wget -r -N -c -np https://physionet.org/files/ptb-xl/1.0.1/` in your command line.
 - **AWS Command Line Tools:** Synchronize using `aws s3 sync --no-sign-request s3://physionet-open/ptb-xl/1.0.1/ DESTINATION`.
+
+### Data use
+All paths in this repository will assume that the ptb-xl data is downloaded in the Data folder. All paths will route to it which will not work if you have not downloaded the data. 

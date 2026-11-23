@@ -1,0 +1,8 @@
+# Types of ECG files
+*.dat
+*.hea
+
+# Folders for personal env and data
+Data/*
+!Data/README.md
+.venv/*

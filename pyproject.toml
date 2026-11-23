@@ -1,0 +1,22 @@
+[project]
+name = "final-project-group1"
+version = "0.1.0"
+description = "Final Project for Group 1 Deep Learning Fall 2026 -- Prediction of ECG data"
+readme = "README.md"
+authors = [
+    { name = "Aidan Brown", email = "aidansbrown@gwu.edu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.5",
+    "pandas>=3.1.1",
+    "torch>=2.15.0",
+    "wfdb>=5.0.0",
+]
+
+[project.scripts]
+final-project-group1 = "final_project_group1:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
