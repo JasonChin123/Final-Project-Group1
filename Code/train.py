@@ -46,6 +46,19 @@ def run_epoch(model, loader, loss_fn, device, optimizer=None):
 
   return total_loss / len(loader.dataset), np.concatenate(all_targets), np.concatenate(all_probs)
 
+def augment(x, noise_std=0.02, max_mask=100, lead_drop_prob=0.1):
+  """Random train-time augmentation. x: (B, 12, T), already normalized, on device."""
+  B, C, T = x.shape
+  x = x + noise_std * torch.randn_like(x)                         # gaussian noise
+
+  starts = torch.randint(0, T - max_mask, (B, 1, 1), device=x.device)
+  lengths = torch.randint(0, max_mask + 1, (B, 1, 1), device=x.device)
+  t = torch.arange(T, device=x.device).view(1, 1, T)
+  x = x.masked_fill((t >= starts) & (t < starts + lengths), 0.0)  # time mask, one gap per sample
+
+  keep = (torch.rand(B, C, 1, device=x.device) > lead_drop_prob).to(x.dtype)
+  return x * keep                                                  # lead dropout
+
 
 def main():
   parser = argparse.ArgumentParser()
