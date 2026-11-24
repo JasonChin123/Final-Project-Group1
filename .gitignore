@@ -6,3 +6,7 @@
 Data/*
 !Data/README.md
 .venv/*
+
+# Models and checkpoints
+checkpoints/*
+*.pth
